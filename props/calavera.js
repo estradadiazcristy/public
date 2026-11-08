@@ -1,0 +1,248 @@
+import * as THREE from "../js/three.module.js";
+
+export default function E07({x,y,z}){
+ var light2 = new THREE.DirectionalLight(0xffffff, 1.5);
+    light2.position.set(-40, 40, 20);
+    //scene.add(light2);
+
+    var light3 = new THREE.HemisphereLight(0xffffff, 0x00ffff, 0.8);
+    light3.position.set(0, 40, 0);
+    //scene.add(light3);
+
+    // MATERIALES
+    var matHueso = new THREE.MeshLambertMaterial({ color: 0xf0efe6 }); 
+    var matNegro = new THREE.MeshLambertMaterial({ color: 0x111111 }); 
+    var matSombrero = new THREE.MeshLambertMaterial({ color: 0x222222 }); 
+    var matRojo = new THREE.MeshLambertMaterial({ color: 0xcc2222 }); 
+    var matDorado = new THREE.MeshLambertMaterial({ color: 0xdaa520 }); 
+
+    // 1. SOMBRERO Y ADORNOS
+    var geoCopa = new THREE.CylinderGeometry(4, 4, 6, 16);
+    var mesh1 = new THREE.Mesh(geoCopa, matSombrero);
+    mesh1.position.set(0, 31, 0);
+    mesh1.castShadow = true;
+
+    var geoAla = new THREE.CylinderGeometry(7, 7, 0.4, 32);
+    var mesh2 = new THREE.Mesh(geoAla, matSombrero);
+    mesh2.position.set(0, 28, 0);
+    mesh2.castShadow = true;
+
+    var geoCinta = new THREE.CylinderGeometry(4.1, 4.1, 0.8, 16);
+    var mesh3 = new THREE.Mesh(geoCinta, matRojo);
+    mesh3.position.set(0, 28.5, 0);
+    mesh3.castShadow = true;
+
+    var geoPluma = new THREE.ConeGeometry(0.6, 5, 8);
+    var mesh4 = new THREE.Mesh(geoPluma, matDorado);
+    mesh4.position.set(-3.5, 32, 2);
+    mesh4.rotation.z = -0.4;
+    mesh4.castShadow = true;
+
+    var mesh5 = new THREE.Mesh(geoPluma, matRojo);
+    mesh5.position.set(-3.8, 31.5, 1);
+    mesh5.rotation.z = -0.6;
+    mesh5.castShadow = true;
+
+
+    // 2. CABEZA Y ROSTRO
+    var geoCraneo = new THREE.SphereGeometry(5, 16, 16);
+    var mesh6 = new THREE.Mesh(geoCraneo, matHueso);
+    mesh6.position.set(0, 23, 0);
+    mesh6.castShadow = true;
+
+    var geoBoca = new THREE.BoxGeometry(4, 3, 4);
+    var mesh7 = new THREE.Mesh(geoBoca, matHueso);
+    mesh7.position.set(0, 19.5, 0);
+    mesh7.castShadow = true;
+
+    var geoOjo = new THREE.SphereGeometry(1.1, 12, 12);
+    var mesh8 = new THREE.Mesh(geoOjo, matNegro);
+    mesh8.position.set(-1.8, 23.5, 4.2);
+
+    var mesh9 = new THREE.Mesh(geoOjo, matNegro);
+    mesh9.position.set(1.8, 23.5, 4.2);
+
+    var geoNariz = new THREE.SphereGeometry(0.5, 8, 8);
+    var mesh10 = new THREE.Mesh(geoNariz, matNegro);
+    mesh10.position.set(-0.6, 21.5, 4.5);
+
+    var mesh11 = new THREE.Mesh(geoNariz, matNegro);
+    mesh11.position.set(0.6, 21.5, 4.5);
+
+    var geoLineaBoca = new THREE.BoxGeometry(2.5, 0.2, 0.2);
+    var mesh12 = new THREE.Mesh(geoLineaBoca, matNegro);
+    mesh12.position.set(0, 19.5, 2.1);
+
+
+    // 3. MOÑO Y CUELLO 
+    var geoNudo = new THREE.SphereGeometry(0.8, 8, 8);
+    var mesh13 = new THREE.Mesh(geoNudo, matRojo);
+    mesh13.position.set(0, 17, 1.8);
+    mesh13.castShadow = true;
+
+    var geoLadoMono = new THREE.ConeGeometry(1.8, 3, 8);
+    var mesh14 = new THREE.Mesh(geoLadoMono, matRojo);
+    mesh14.position.set(-2, 17, 1.5);
+    mesh14.rotation.z = Math.PI / 2;
+    mesh14.castShadow = true;
+
+    var mesh15 = new THREE.Mesh(geoLadoMono, matRojo);
+    mesh15.position.set(2, 17, 1.5);
+    mesh15.rotation.z = -Math.PI / 2;
+    mesh15.castShadow = true;
+
+    var geoCuello = new THREE.CylinderGeometry(0.5, 0.5, 3, 8);
+    var mesh16 = new THREE.Mesh(geoCuello, matHueso);
+    mesh16.position.set(-0.7, 16.5, 0);
+    mesh16.castShadow = true;
+
+    var mesh17 = new THREE.Mesh(geoCuello, matHueso);
+    mesh17.position.set(0.7, 16.5, 0);
+    mesh17.castShadow = true;
+
+    var geoColumna = new THREE.CylinderGeometry(0.8, 0.8, 12, 8);
+    var mesh18 = new THREE.Mesh(geoColumna, matHueso);
+    mesh18.position.set(0, 9, 0);
+    mesh18.castShadow = true;
+
+
+    // 4. COSTILLAS 
+    var geoCostilla = new THREE.SphereGeometry(1.5, 12, 12);
+    geoCostilla.scale(3, 0.8, 1);
+
+    var mesh19 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh19.position.set(-4, 13, 0);
+    mesh19.rotation.z = 0.3;
+    mesh19.castShadow = true;
+
+    var mesh20 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh20.position.set(-4, 10.7, 0);
+    mesh20.rotation.z = 0.3;
+    mesh20.castShadow = true;
+
+    var mesh21 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh21.position.set(-4, 8.4, 0);
+    mesh21.rotation.z = 0.3;
+    mesh21.castShadow = true;
+
+    var mesh22 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh22.position.set(-4, 6.1, 0);
+    mesh22.rotation.z = 0.3;
+    mesh22.castShadow = true;
+
+    var mesh23 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh23.position.set(4, 13, 0);
+    mesh23.rotation.z = -0.3;
+    mesh23.castShadow = true;
+
+    var mesh24 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh24.position.set(4, 10.7, 0);
+    mesh24.rotation.z = -0.3;
+    mesh24.castShadow = true;
+
+    var mesh25 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh25.position.set(4, 8.4, 0);
+    mesh25.rotation.z = -0.3;
+    mesh25.castShadow = true;
+
+    var mesh26 = new THREE.Mesh(geoCostilla, matHueso);
+    mesh26.position.set(4, 6.1, 0);
+    mesh26.rotation.z = -0.3;
+    mesh26.castShadow = true;
+
+
+    // 5. CINTURÓN Y PELVIS 
+    var geoCinturon = new THREE.BoxGeometry(6, 1, 3);
+    var mesh27 = new THREE.Mesh(geoCinturon, matRojo);
+    mesh27.position.set(0, 4, 0);
+    mesh27.castShadow = true;
+
+    var geoHebilla = new THREE.BoxGeometry(1.5, 1.2, 0.4);
+    var mesh28 = new THREE.Mesh(geoHebilla, matDorado);
+    mesh28.position.set(0, 4, 1.5);
+    mesh28.castShadow = true;
+
+    var geoPelvis = new THREE.BoxGeometry(7, 2, 4);
+    var mesh29 = new THREE.Mesh(geoPelvis, matHueso);
+    mesh29.position.set(0, 2.5, 0);
+    mesh29.castShadow = true;
+
+
+    // 6. PIERNAS Y PIES
+    var geoHuesoPierna = new THREE.CylinderGeometry(1.1, 1.1, 8, 12);
+    var mesh30 = new THREE.Mesh(geoHuesoPierna, matHueso);
+    mesh30.position.set(-2.5, -2.5, 0);
+    mesh30.castShadow = true;
+
+    var mesh31 = new THREE.Mesh(geoHuesoPierna, matHueso);
+    mesh31.position.set(2.5, -2.5, 0);
+    mesh31.castShadow = true;
+
+    var geoPie = new THREE.BoxGeometry(2, 1.5, 4.5);
+    var mesh32 = new THREE.Mesh(geoPie, matHueso);
+    mesh32.position.set(-2.5, -6.8, 1);
+    mesh32.castShadow = true;
+
+    var mesh33 = new THREE.Mesh(geoPie, matHueso);
+    mesh33.position.set(2.5, -6.8, 1);
+    mesh33.castShadow = true;
+
+
+    // 7. BRAZOS Y MANOS
+    var geoHuesoBrazo = new THREE.CylinderGeometry(0.7, 0.7, 6, 8);
+
+    // BRAZO SUPERIOS
+    var mesh34 = new THREE.Mesh(geoHuesoBrazo, matHueso);
+    mesh34.position.set(-8.0, 12.0, 0);
+    mesh34.rotation.z = 0.75;
+    mesh34.castShadow = true;
+
+    // ANTEBRAZO IZQUIERDO
+    var mesh35 = new THREE.Mesh(geoHuesoBrazo, matHueso);
+    mesh35.position.set(-10.8, 7.2, 0);
+    mesh35.rotation.z = 0.25;
+    mesh35.castShadow = true;
+
+    // BRAZO DERECHO
+    var mesh36 = new THREE.Mesh(geoHuesoBrazo, matHueso);
+    mesh36.position.set(8.0, 12.0, 0);
+    mesh36.rotation.z = -0.75;
+    mesh36.castShadow = true;
+
+    // ANTEBRAZO DERECHO
+    var mesh37 = new THREE.Mesh(geoHuesoBrazo, matHueso);
+    mesh37.position.set(10.8, 7.2, 0);
+    mesh37.rotation.z = -0.25;
+    mesh37.castShadow = true;
+
+    // MANOS
+    var geoDedo = new THREE.SphereGeometry(0.4, 8, 8);
+
+    // MANO IZQUIERDA
+    var mesh38 = new THREE.Mesh(geoDedo, matHueso); mesh38.position.set(-12.3, 4.2, 0);
+    var mesh39 = new THREE.Mesh(geoDedo, matHueso); mesh39.position.set(-11.9, 4.2, 0);
+    var mesh40 = new THREE.Mesh(geoDedo, matHueso); mesh40.position.set(-11.5, 4.2, 0);
+    var mesh41 = new THREE.Mesh(geoDedo, matHueso); mesh41.position.set(-11.1, 4.2, 0);
+    var mesh42 = new THREE.Mesh(geoDedo, matHueso); mesh42.position.set(-10.7, 4.2, 0);
+
+    // MANO DERECHA
+    var mesh43 = new THREE.Mesh(geoDedo, matHueso); mesh43.position.set(10.7, 4.2, 0);
+    var mesh44 = new THREE.Mesh(geoDedo, matHueso); mesh44.position.set(11.1, 4.2, 0);
+    var mesh45 = new THREE.Mesh(geoDedo, matHueso); mesh45.position.set(11.5, 4.2, 0);
+    var mesh46 = new THREE.Mesh(geoDedo, matHueso); mesh46.position.set(11.9, 4.2, 0);
+    var mesh47 = new THREE.Mesh(geoDedo, matHueso); mesh47.position.set(12.3, 4.2, 0);
+
+
+    // GRUPO
+    const ESC07= new THREE.Group();
+    ESC07.add(
+        mesh1, mesh2, mesh3, mesh4, mesh5, mesh6, mesh7, mesh8, mesh9, mesh10,
+        mesh11, mesh12, mesh13, mesh14, mesh15, mesh16, mesh17, mesh18, mesh19, mesh20,
+        mesh21, mesh22, mesh23, mesh24, mesh25, mesh26, mesh27, mesh28, mesh29, mesh30,
+        mesh31, mesh32, mesh33, mesh34, mesh35, mesh36, mesh37, mesh38, mesh39, mesh40,
+        mesh41, mesh42, mesh43, mesh44, mesh45, mesh46, mesh47);
+
+    ESC07.position.set(x, y, z); 
+
+    return ESC07;
+}

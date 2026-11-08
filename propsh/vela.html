@@ -1,0 +1,331 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>vela</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xf7b1b0);
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, 4, 10);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+///  💫💢🐭🐭 LUCES
+//LUZ PRINCIPAL
+var light1 =new THREE.AmbientLight(0xffffff,0.5);
+scene.add(light1);
+
+var luzVela1 = new THREE.PointLight(0xffaa33, 100, 7, 2);
+luzVela1.position.set(-8, 15, -24);
+scene.add(luzVela1);
+var luzVela1Helper = new THREE.PointLightHelper(luzVela1, 4);
+scene.add(luzVela1Helper);
+
+// Espacio para colocar los objetos
+
+
+//vaso color1
+  var geometry133 = new THREE.CylinderGeometry(4,4,9,10,10);
+        var material133 = new THREE.MeshLambertMaterial({ color: 0xffff00, transparent: true, opacity:0.5 });
+        var mesh133 = new THREE.Mesh(geometry133, material133);
+        mesh133.position.set(26, 4, -24);
+        mesh133.castShadow = true;
+        scene.add(mesh133);
+
+         var tas = new THREE.CylinderGeometry(3.5, 3,8, 10, 10, false);
+        var materialtas = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var meshtas = new THREE.Mesh(tas, materialtas);
+        meshtas.position.set(26, 4, -24);
+        meshtas.castShadow = true;
+        scene.add(meshtas);
+
+        
+       
+//fuego
+        var geometry91 = new THREE.SphereGeometry(1.5,1);
+        var material91 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh91 = new THREE.Mesh(geometry91, material91);
+        mesh91.position.set(26, 9, -24);
+        mesh91.castShadow = true;
+        scene.add(mesh91);
+    
+        //fuego2
+         var geometry9 = new THREE.SphereGeometry(1,1);
+        var material9 = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh9 = new THREE.Mesh(geometry9, material9);
+        mesh9.position.set(26, 9, -24);
+        mesh9.castShadow = true;
+        scene.add(mesh9);
+
+        
+        //VELA GRANDE 
+        var geometry00 = new THREE.CylinderGeometry(3,3,21,10,10);
+        var material00 = new THREE.MeshLambertMaterial({ color: 0x6cc2ac, transparent: true, opacity:0.5 });
+        var mesh00 = new THREE.Mesh(geometry00, material00);
+        mesh00.position.set(1, 9, -24);
+        mesh00.castShadow = true;
+        scene.add(mesh00);
+
+         var tas1 = new THREE.CylinderGeometry(2,2,21, 10, 10, false);
+        var materialtas1 = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var meshtas1 = new THREE.Mesh(tas1, materialtas1);
+        meshtas1.position.set(1, 9, -24);
+        meshtas1.castShadow = true;
+        scene.add(meshtas1);
+
+        
+       
+//fuego de vela grande
+        var geometry001 = new THREE.SphereGeometry(1.5,1);
+        var material001 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh001 = new THREE.Mesh(geometry001, material001);
+        mesh001.position.set(1, 21, -24);
+        mesh001.castShadow = true;
+        scene.add(mesh001);
+    
+        //fuego2 de vela grande
+         var geometry0012 = new THREE.SphereGeometry(1,1);
+        var material0012 = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh0012 = new THREE.Mesh(geometry0012, material0012);
+        mesh0012.position.set(1, 21, -24);
+        mesh0012.castShadow = true;
+        scene.add(mesh0012);
+
+
+        //vela 2
+ var geometry3 = new THREE.CylinderGeometry(4,4,9,10,10);
+        var material3 = new THREE.MeshLambertMaterial({ color: 0xeff7f6, transparent: true, opacity:0.5 });
+        var mesh3 = new THREE.Mesh(geometry3, material3);
+        mesh3.position.set(-8, 4, -24);
+        mesh3.castShadow = true;
+        scene.add(mesh3);
+
+         var t = new THREE.CylinderGeometry(3.5, 3,8, 10, 10, false);
+        var materialte = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var mesht = new THREE.Mesh(t, materialte);
+        mesht.position.set(-8, 4, -24);
+        mesht.castShadow = true;
+        scene.add(mesht);
+
+        //fuego 2.1
+
+          var geometry910 = new THREE.SphereGeometry(1.5,1);
+        var material910 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh910 = new THREE.Mesh(geometry910, material910);
+        mesh910.position.set(-8, 9, -24);
+        mesh910.castShadow = true;
+        scene.add(mesh910);
+    
+        //fuego2.1
+         var geometry98 = new THREE.SphereGeometry(1,1);
+        var material98 = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh98 = new THREE.Mesh(geometry98, material98);
+        mesh98.position.set(-8, 9, -24);
+        mesh98.castShadow = true;
+        scene.add(mesh98);
+
+        
+
+        //vela 3
+        var geometry33 = new THREE.CylinderGeometry(4,4,9,10,10);
+        var material33 = new THREE.MeshLambertMaterial({ color: 0x0096c7, transparent: true, opacity:0.5 });
+        var mesh33 = new THREE.Mesh(geometry33, material33);
+        mesh33.position.set(9, 4, -24);
+        mesh33.castShadow = true;
+        scene.add(mesh33);
+
+         var to = new THREE.CylinderGeometry(3.5, 3,8, 10, 10, false);
+        var materialteo = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var meshto = new THREE.Mesh(to, materialteo);
+        meshto.position.set(9, 4, -24);
+        scene.add(meshto);
+
+        //fuego 3
+         var geometry912 = new THREE.SphereGeometry(1.5,1);
+        var material912 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh912 = new THREE.Mesh(geometry912, material912);
+        mesh912.position.set(9, 9, -24);
+        scene.add(mesh912);
+
+        //fuego 3.1
+         var geometry6 = new THREE.SphereGeometry(1,1);
+        var material6 = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh6 = new THREE.Mesh(geometry6, material6);
+        mesh6.position.set(9, 9, -24);
+        scene.add(mesh6);
+    
+         //VELA GRANDE 
+        var geometry007 = new THREE.CylinderGeometry(3,3,21,10,10);
+        var material007 = new THREE.MeshLambertMaterial({ color: 0x6cc2ac, transparent: true, opacity:0.5 });
+        var mesh007 = new THREE.Mesh(geometry007, material007);
+        mesh007.position.set(1, 9, -24);
+        mesh007.castShadow = true;
+        scene.add(mesh007);
+
+         var tas7 = new THREE.CylinderGeometry(2,2,21, 10, 10, false);
+        var materialtas7 = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var meshtas7 = new THREE.Mesh(tas7, materialtas7);
+        meshtas7.position.set(1, 9, -24);
+        scene.add(meshtas7);
+
+        
+       
+//fuego de vela grande
+        var geometry007 = new THREE.SphereGeometry(1.5,1);
+        var material007 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh007 = new THREE.Mesh(geometry007, material007);
+        mesh007.position.set(1, 21, -24);
+        mesh007.castShadow = true;
+        scene.add(mesh007);
+    
+        //fuego2 de vela grande
+         var geometry0072 = new THREE.SphereGeometry(1,1);
+        var material0072 = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh0072 = new THREE.Mesh(geometry0072, material0072);
+        mesh0072.position.set(1, 21, -24);
+        mesh0072.castShadow = true;
+        scene.add(mesh0072);
+
+
+        //AQUI
+        //VELA GRANDE 2
+        var geometry08 = new THREE.CylinderGeometry(3,3,21,10,10);
+        var material08 = new THREE.MeshLambertMaterial({ color: 0xec665a, transparent: true, opacity:0.5 });
+        var mesh08 = new THREE.Mesh(geometry08, material08);
+        mesh08.position.set(-17, 9, -24);
+        mesh08.castShadow = true;
+        scene.add(mesh08);
+
+         var tas8 = new THREE.CylinderGeometry(2,2,21, 10, 10, false);
+        var materialtas8 = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var meshtas8 = new THREE.Mesh(tas8, materialtas8);
+        meshtas8.position.set(-17, 9, -24);
+        scene.add(meshtas8);
+
+        
+       
+//fuego de vela grande2
+        var geometry8 = new THREE.SphereGeometry(1.5,1);
+        var material8 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh8 = new THREE.Mesh(geometry8, material8);
+        mesh8.position.set(-17, 21, -24);
+        mesh8.castShadow = true;
+        scene.add(mesh8);
+    
+        //fuego2 de vela grande2
+         var geometry8p = new THREE.SphereGeometry(1,1);
+        var material8p = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh8p = new THREE.Mesh(geometry8p, material8p);
+        mesh8p.position.set(-17, 21, -24);
+        mesh8p.castShadow = true;
+        scene.add(mesh8p);
+
+        //VELA GRANDE 3 ULTIMA a lado de la amarilla
+        var geometry080 = new THREE.CylinderGeometry(3,3,21,10,10);
+        var material080 = new THREE.MeshLambertMaterial({ color: 0xe74fc5, transparent: true, opacity:0.5 });
+        var mesh080 = new THREE.Mesh(geometry080, material080);
+        mesh080.position.set(17, 9, -24);
+        mesh080.castShadow = true;
+        scene.add(mesh080);
+
+         var tas0 = new THREE.CylinderGeometry(2,2,21, 10, 10, false);
+        var materialtas0 = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+        var meshtas0 = new THREE.Mesh(tas0, materialtas0);
+        meshtas0.position.set(17, 9, -24);
+        meshtas0.castShadow = true;
+        scene.add(meshtas0);
+
+        
+       
+//fuego de vela grande2
+        var geometry5 = new THREE.SphereGeometry(1.5,1);
+        var material5 = new THREE.MeshLambertMaterial({ color: 0xff6d00,transparent: true, opacity:0.5 });
+        var mesh5 = new THREE.Mesh(geometry5, material5);
+        mesh5.position.set(17, 21, -24);
+        mesh5.castShadow = true;
+        scene.add(mesh5);
+    
+        //fuego2 de vela grande2
+         var geometry50 = new THREE.SphereGeometry(1,1);
+        var material50 = new THREE.MeshLambertMaterial({ color: 0xd00000,side: THREE.DoubleSide  });
+        var mesh50 = new THREE.Mesh(geometry50, material50);
+        mesh50.position.set(17, 21, -24);
+        scene.add(mesh50);
+
+        // plano
+
+var geometryPiso = new THREE.PlaneGeometry(200, 200);
+
+var materialPiso = new THREE.MeshStandardMaterial({
+    color: 0x81b29a
+});
+
+var piso = new THREE.Mesh(
+    geometryPiso,
+    materialPiso
+);
+
+piso.rotation.x = -Math.PI / 2;
+piso.position.set(0, 0, 0);
+piso.receiveShadow = true;
+scene.add(piso);
+
+    
+      
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+
+    //🪄🪄 Animación - 
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

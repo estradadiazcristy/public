@@ -1,0 +1,449 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>Catrina</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js"
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x69142B);
+
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, 4, 25);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+ 
+
+// Espacio para colocar los objetos
+// GridHelper
+/*var gridHelper = new THREE.GridHelper(50,50);
+scene.add(gridHelper);
+
+var axesHelper = new THREE.AxesHelper(50);
+scene.add(axesHelper);*/
+
+var light2 = new THREE.DirectionalLight(0Xffffff,1.5);
+scene.add(light2);
+light2.position.set(0,20,50);
+light2.target.position.set(0,0,0);
+
+light2.castShadow = true;
+light2.shadow.bias = 0.01;
+light2.shadow.mapSize.widht = 1024;
+light2.shadow.mapSize.height = 1024;
+
+light2.shadow.camera.top=55;
+light2.shadow.camera.bottom = -55;
+light2.shadow.camera.left = -50;
+light2.shadow.camera.right=-50;
+light2.shadow.camera.visible = true;
+
+var directionalHelper = new THREE.CameraHelper(light2.shadow.camera);
+scene.add(light2);
+
+
+
+///  💫💢🐭🐭 LUCES
+
+
+
+//OBJETOS  ✏️✏️✏️✏️  🪶
+var geometry0 = new THREE.BoxGeometry(100,1,100);
+var material0 = new THREE.MeshLambertMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide, 
+    });
+
+var mesh0 = new THREE.Mesh(geometry0,material0);
+scene.add(mesh0);
+mesh0.position.set(0,-7,0);
+mesh0.receiveShadow = true;
+
+
+
+// CABEZA
+var geometryCranioSentada = new THREE.SphereGeometry(2, 32, 32);
+var materialCranioSentada = new THREE.MeshBasicMaterial({
+    color: 0xE8E0C8,
+});
+var cranio = new THREE.Mesh(geometryCranioSentada, materialCranioSentada);
+cranio.scale.set(1.3, 1.15, 1.20);
+cranio.position.set(0, 12, 0);
+scene.add(cranio);
+
+// COLUMNA
+var geometrycSentada = new THREE.CylinderGeometry(.3,.3,10,30,30);
+var materialcSentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c = new THREE.Mesh(geometrycSentada,materialcSentada);
+scene.add(c);
+c.position.set(0,8,0);
+
+// COSTILLAS
+var geometrycsSentada = new THREE.CylinderGeometry(.3,.3,3.5,30,30);
+var materialcsSentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var cs = new THREE.Mesh(geometrycsSentada,materialcsSentada);
+scene.add(cs);
+cs.position.set(0,7.5,0);
+cs.rotation.z = Math.PI / 2;
+
+var geometrycs1Sentada = new THREE.CylinderGeometry(.3,.3,3,30,30);
+var materialcs1Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var cs1 = new THREE.Mesh(geometrycs1Sentada,materialcs1Sentada);
+scene.add(cs1);
+cs1.position.set(0,6.5,0);
+cs1.rotation.z = Math.PI / 2;
+
+var geometrycs2Sentada = new THREE.CylinderGeometry(.3,.3,2.5,30,30);
+var materialcs2Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var cs2 = new THREE.Mesh(geometrycs2Sentada,materialcs2Sentada);
+scene.add(cs2);
+cs2.position.set(0,5.5,0);
+cs2.rotation.z = Math.PI / 2;
+
+// HOMBROS
+var geometryc1Sentada = new THREE.CylinderGeometry(.2,.2,5,30,30);
+var materialc1Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c1 = new THREE.Mesh(geometryc1Sentada,materialc1Sentada);
+scene.add(c1);
+c1.position.set(0,8.5,0);
+c1.rotation.z = Math.PI / 2;
+
+var geometryc2Sentada = new THREE.SphereGeometry(.4, 32, 32);
+var materialc2Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c2 = new THREE.Mesh(geometryc2Sentada,materialc2Sentada);
+scene.add(c2);
+c2.position.set(2.5,8.5,0);
+
+var geometryc3Sentada = new THREE.SphereGeometry(.4, 32, 32);
+var materialc3Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c3 = new THREE.Mesh(geometryc3Sentada,materialc3Sentada);
+scene.add(c3);
+c3.position.set(-2.5,8.5,0);
+
+// BRAZO IZQUIERDO
+var geometryc4Sentada = new THREE.CylinderGeometry(.2,.2,3,30,30);
+var materialc4Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c4 = new THREE.Mesh(geometryc4Sentada,materialc4Sentada);
+scene.add(c4);
+c4.position.set(-2.5,7.5,1);
+c4.rotation.x = Math.PI / -4;
+
+var geometryc41Sentada = new THREE.SphereGeometry(.4, 32, 32);
+var materialc41Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c41 = new THREE.Mesh(geometryc41Sentada,materialc41Sentada);
+scene.add(c41);
+c41.position.set(-2.5,6.5,2);
+
+var geometryc42Sentada = new THREE.CylinderGeometry(.2,.2,2,30,30);
+var materialc42Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c42 = new THREE.Mesh(geometryc42Sentada,materialc42Sentada);
+scene.add(c42);
+c42.position.set(-1.8,7,2.5);
+c42.rotation.x = Math.PI / 4;
+c42.rotation.z = Math.PI / -4;
+
+// BRAZO DERECHO
+var geometryc5Sentada = new THREE.CylinderGeometry(.2,.2,3,30,30);
+var materialc5Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c5 = new THREE.Mesh(geometryc5Sentada,materialc5Sentada);
+scene.add(c5);
+c5.position.set(2.5,7.5,1);
+c5.rotation.x = Math.PI / -4;
+
+var geometryc51Sentada = new THREE.SphereGeometry(.4, 32, 32);
+var materialc51Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c51 = new THREE.Mesh(geometryc51Sentada,materialc51Sentada);
+scene.add(c51);
+c51.position.set(2.5,6.5,2);
+
+var geometryc52Sentada = new THREE.CylinderGeometry(.2,.2,2,30,30);
+var materialc52Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c52 = new THREE.Mesh(geometryc52Sentada,materialc52Sentada);
+scene.add(c52);
+c52.position.set(1.8,7,2.5);
+c52.rotation.x = Math.PI / 4;
+c52.rotation.z = Math.PI / 4;
+
+// FALDA SENTADA
+var geometryfSentada = new THREE.SphereGeometry(4,30,30,0,Math.PI);
+var materialfSentada = new THREE.MeshBasicMaterial({
+    color:0x630202,
+    side: THREE.DoubleSide
+});
+var f = new THREE.Mesh(geometryfSentada,materialfSentada);
+scene.add(f);
+f.position.set(0,2.4,1.2);
+f.scale.set(1,0.48,1.05);
+f.rotation.x = Math.PI / -2;
+
+// CADERA
+var geometryp1Sentada = new THREE.CylinderGeometry(.2,.2,4,30,30);
+var materialp1Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var p1 = new THREE.Mesh(geometryp1Sentada,materialp1Sentada);
+scene.add(p1);
+p1.position.set(0,3,0);
+p1.rotation.z = Math.PI / 2;
+
+// PIERNAS DOBLADAS
+var geometryp2Sentada = new THREE.CylinderGeometry(.2,.2,3.5,30,30);
+var materialp2Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var p2 = new THREE.Mesh(geometryp2Sentada,materialp2Sentada);
+scene.add(p2);
+p2.position.set(2,0.25,4.5);
+
+var geometryp3Sentada = new THREE.CylinderGeometry(.2,.2,3.5,30,30);
+var materialp3Sentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var p3 = new THREE.Mesh(geometryp3Sentada,materialp3Sentada);
+scene.add(p3);
+p3.position.set(-2,0.25,4.5);
+
+// MUSLO IZQUIERDO
+var geometriaMusloIzqSentada = new THREE.CylinderGeometry(.24,.24,4.5,30,30);
+var materialMusloIzqSentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side:THREE.DoubleSide
+});
+var musloIzqSentada = new THREE.Mesh(
+    geometriaMusloIzqSentada,
+    materialMusloIzqSentada
+);
+musloIzqSentada.position.set(-2,2.5,2.25);
+musloIzqSentada.rotation.x = Math.PI / 2;
+scene.add(musloIzqSentada);
+
+// MUSLO DERECHO
+var geometriaMusloDerSentada = new THREE.CylinderGeometry(.24,.24,4.5,30,30);
+var materialMusloDerSentada = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side:THREE.DoubleSide
+});
+var musloDerSentada = new THREE.Mesh(
+    geometriaMusloDerSentada,
+    materialMusloDerSentada
+);
+musloDerSentada.position.set(2,2.5,2.25);
+musloDerSentada.rotation.x = Math.PI / 2;
+scene.add(musloDerSentada);
+
+// RODILLAS
+var geometriaRodillaIzqSentada = new THREE.SphereGeometry(.32,20,20);
+var rodillaIzqSentada = new THREE.Mesh(
+    geometriaRodillaIzqSentada,
+    materialMusloIzqSentada
+);
+rodillaIzqSentada.position.set(-2,2.5,4.5);
+scene.add(rodillaIzqSentada);
+
+var geometriaRodillaDerSentada = new THREE.SphereGeometry(.32,20,20);
+var rodillaDerSentada = new THREE.Mesh(
+    geometriaRodillaDerSentada,
+    materialMusloDerSentada
+);
+rodillaDerSentada.position.set(2,2.5,4.5);
+scene.add(rodillaDerSentada);
+
+// PIES
+var geometrypi3Sentada = new THREE.BoxGeometry(1,.5,2);
+var materialpi3Sentada = new THREE.MeshBasicMaterial({
+    color:0x260303,
+    side: THREE.DoubleSide
+});
+var pi3 = new THREE.Mesh(geometrypi3Sentada,materialpi3Sentada);
+scene.add(pi3);
+pi3.position.set(-2,-1.65,5.2);
+
+var geometrypi4Sentada = new THREE.BoxGeometry(1,.5,2);
+var materialpi4Sentada = new THREE.MeshBasicMaterial({
+    color:0x260303,
+    side: THREE.DoubleSide
+});
+var pi4 = new THREE.Mesh(geometrypi4Sentada,materialpi4Sentada);
+scene.add(pi4);
+pi4.position.set(2,-1.65,5.2);
+
+
+
+// OJOS
+var geometryojosSentada = new THREE.CircleGeometry(.5,40);
+var materialojosSentada = new THREE.MeshBasicMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide
+});
+var ojos = new THREE.Mesh(geometryojosSentada,materialojosSentada);
+scene.add(ojos);
+ojos.position.set(1,11.6,2.4);
+
+var geometryojos1Sentada = new THREE.CircleGeometry(.5,40);
+var materialojos1Sentada = new THREE.MeshBasicMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide
+});
+var ojos1 = new THREE.Mesh(geometryojos1Sentada,materialojos1Sentada);
+scene.add(ojos1);
+ojos1.position.set(-1,11.6,2.4);
+
+// NARIZ
+var geometryNarizSentada = new THREE.ConeGeometry(0.4, 0.09, 4);
+var materialnarizSentada = new THREE.MeshBasicMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide
+});
+var nariz = new THREE.Mesh(geometryNarizSentada, materialnarizSentada);
+nariz.rotation.x = Math.PI / 2;
+nariz.position.set(0,11,2.2);
+scene.add(nariz);
+
+// BOCA
+var geometryb1Sentada = new THREE.PlaneGeometry(1.5,.1);
+var materialb1Sentada = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide
+});
+var b1 = new THREE.Mesh(geometryb1Sentada,materialb1Sentada);
+scene.add(b1);
+b1.position.set(0,10,2);
+
+var geometryb2Sentada = new THREE.PlaneGeometry(.1,.5);
+var materialb2Sentada = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide
+});
+var b2 = new THREE.Mesh(geometryb2Sentada,materialb2Sentada);
+scene.add(b2);
+b2.position.set(0,10,2);
+
+var geometryb3Sentada = new THREE.PlaneGeometry(.1,.5);
+var materialb3Sentada = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide
+});
+var b3 = new THREE.Mesh(geometryb3Sentada,materialb3Sentada);
+scene.add(b3);
+b3.position.set(.5,10,2);
+
+var geometryb4Sentada = new THREE.PlaneGeometry(.1,.5);
+var materialb4Sentada = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide
+});
+var b4 = new THREE.Mesh(geometryb4Sentada,materialb4Sentada);
+scene.add(b4);
+b4.position.set(-.5,10,2);
+
+// MANDÍBULA
+var geometryMandibulaSentada = new THREE.BoxGeometry(3,3.5,2);
+var mandibula = new THREE.Mesh(
+    geometryMandibulaSentada,
+    materialCranioSentada
+);
+mandibula.position.set(0,11,.9);
+scene.add(mandibula);
+
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+    //🪄🪄 Animación - 
+
+
+
+
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

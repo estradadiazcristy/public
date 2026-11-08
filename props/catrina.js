@@ -1,0 +1,425 @@
+import * as THREE from "../js/three.module.js";
+
+export default function E05({x,y,z}){
+
+// Espacio para colocar los objetos
+// GridHelper
+/*var gridHelper = new THREE.GridHelper(50,50);
+scene.add(gridHelper);
+
+var axesHelper = new THREE.AxesHelper(50);
+scene.add(axesHelper);*/
+
+var light2 = new THREE.DirectionalLight(0Xffffff,1.5);
+//scene.add(light2);
+light2.position.set(0,20,50);
+light2.target.position.set(0,0,0);
+
+light2.castShadow = true;
+light2.shadow.bias = 0.01;
+light2.shadow.mapSize.widht = 1024;
+light2.shadow.mapSize.height = 1024;
+
+light2.shadow.camera.top=55;
+light2.shadow.camera.bottom = -55;
+light2.shadow.camera.left = -50;
+light2.shadow.camera.right=-50;
+light2.shadow.camera.visible = true;
+
+var directionalHelper = new THREE.CameraHelper(light2.shadow.camera);
+//scene.add(light2);
+
+
+
+///  💫💢🐭🐭 LUCES
+
+
+
+//OBJETOS  ✏️✏️✏️✏️  🪶
+var geometry0 = new THREE.BoxGeometry(100,1,100);
+var material0 = new THREE.MeshLambertMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide, 
+    });
+
+var mesh0 = new THREE.Mesh(geometry0,material0);
+//scene.add(mesh0);
+mesh0.position.set(0,-7,0);
+mesh0.receiveShadow = true;
+
+
+
+// Cabeza
+var geometryCranio = new THREE.SphereGeometry(2, 32, 32);
+var materialCranio = new THREE.MeshBasicMaterial({
+    color: 0xE8E0C8,
+});
+var cranio = new THREE.Mesh(geometryCranio, materialCranio);
+cranio.scale.set(1.3, 1.15, 1.20);
+cranio.position.set(0, 12, 0);
+//scene.add(cranio);
+
+var geometryc = new THREE.CylinderGeometry(.3,.3,10,30,30);
+var materialc = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c = new THREE.Mesh(geometryc,materialc);
+//scene.add(c);
+c.position.set(0,8,0);
+//costillas
+var geometrycs = new THREE.CylinderGeometry(.3,.3,3.5,30,30);
+var materialcs = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var cs = new THREE.Mesh(geometrycs,materialcs);
+//scene.add(cs);
+cs.position.set(0,7.5,0);
+cs.rotation.z = Math.PI / 2;
+
+var geometrycs1 = new THREE.CylinderGeometry(.3,.3,3,30,30);
+var materialcs1 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var cs1 = new THREE.Mesh(geometrycs1,materialcs1);
+//scene.add(cs1);
+cs1.position.set(0,6.5,0);
+cs1.rotation.z = Math.PI / 2;
+
+var geometrycs2 = new THREE.CylinderGeometry(.3,.3,2.5,30,30);
+var materialcs2 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var cs2 = new THREE.Mesh(geometrycs2,materialcs2);
+//scene.add(cs2);
+cs2.position.set(0,5.5,0);
+cs2.rotation.z = Math.PI / 2;
+
+var geometryc1 = new THREE.CylinderGeometry(.2,.2,5,30,30);
+var materialc1 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var c1 = new THREE.Mesh(geometryc1,materialc1);
+//scene.add(c1);
+c1.position.set(0,8.5,0);
+c1.rotation.z = Math.PI / 2;
+
+var geometryc2 = new THREE.SphereGeometry(.4, 32, 32);
+var materialc2 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c2 = new THREE.Mesh(geometryc2,materialc2);
+//scene.add(c2);
+c2.position.set(2.5,8.5,0);
+
+var geometryc3 = new THREE.SphereGeometry(.4, 32, 32);
+var materialc3 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c3 = new THREE.Mesh(geometryc3,materialc3);
+//scene.add(c3);
+c3.position.set(-2.5,8.5,0);
+
+//brazo izquierdo
+var geometryc4 = new THREE.CylinderGeometry(.2,.2,3,30,30);
+var materialc4 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c4 = new THREE.Mesh(geometryc4,materialc4);
+//scene.add(c4);
+c4.position.set(-2.5,7.5,1);
+c4.rotation.x = Math.PI / -4;
+
+var geometryc41 = new THREE.SphereGeometry(.4, 32, 32);
+var materialc41 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c41 = new THREE.Mesh(geometryc41,materialc41);
+//scene.add(c41);
+c41.position.set(-2.5,6.5,2);
+
+var geometryc42 = new THREE.CylinderGeometry(.2,.2,2,30,30);
+var materialc42 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c42 = new THREE.Mesh(geometryc42,materialc42);
+//scene.add(c42);
+c42.position.set(-1.8,7,2.5);
+c42.rotation.x = Math.PI / 4;
+c42.rotation.z = Math.PI / -4;
+
+//brazo derecho
+var geometryc5 = new THREE.CylinderGeometry(.2,.2,3,30,30);
+var materialc5 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c5 = new THREE.Mesh(geometryc5,materialc5);
+//scene.add(c5);
+c5.position.set(2.5,7.5,1);
+c5.rotation.x = Math.PI / -4;
+
+var geometryc51 = new THREE.SphereGeometry(.4, 32, 32);
+var materialc51 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c51 = new THREE.Mesh(geometryc51,materialc51);
+//scene.add(c51);
+c51.position.set(2.5,6.5,2);
+
+var geometryc52 = new THREE.CylinderGeometry(.2,.2,2,30,30);
+var materialc52 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide });
+var c52 = new THREE.Mesh(geometryc52,materialc52);
+//scene.add(c52);
+c52.position.set(1.8,7,2.5);
+c52.rotation.x = Math.PI / 4;
+c52.rotation.z = Math.PI / 4;
+
+//falda
+
+var geometryf = new THREE.SphereGeometry(4,30,30,0,Math.PI);
+var materialf = new THREE.MeshBasicMaterial({
+    color:0x630202,
+    side: THREE.DoubleSide
+});
+var f = new THREE.Mesh(geometryf,materialf);
+//scene.add(f);
+f.position.set(0,0,0);
+f.rotation.x = Math.PI / -2;
+
+
+var geometryp1 = new THREE.CylinderGeometry(.2,.2,4,30,30);
+var materialp1 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var p1 = new THREE.Mesh(geometryp1,materialp1);
+//scene.add(p1);
+p1.position.set(0,3,0);
+p1.rotation.z = Math.PI / 2;
+
+var geometryp2 = new THREE.CylinderGeometry(.2,.2,8,30,30);
+var materialp2 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var p2 = new THREE.Mesh(geometryp2,materialp2);
+//scene.add(p2);
+p2.position.set(2,-1.5,0);
+
+var geometryp3 = new THREE.CylinderGeometry(.2,.2,8,30,30);
+var materialp3 = new THREE.MeshBasicMaterial({
+    color:0xE8E0C8,
+    side: THREE.DoubleSide
+});
+var p3 = new THREE.Mesh(geometryp3,materialp3);
+//scene.add(p3);
+p3.position.set(-2,-1.5,0);
+
+//pie
+var geometrypi3 = new THREE.BoxGeometry(1,.5,2);
+var materialpi3 = new THREE.MeshBasicMaterial({
+    color:0x260303,
+    side: THREE.DoubleSide
+});
+var pi3 = new THREE.Mesh(geometrypi3,materialpi3);
+//scene.add(pi3);
+pi3.position.set(-2,-5.5,0.5);
+
+var geometrypi4 = new THREE.BoxGeometry(1,.5,2);
+var materialpi4 = new THREE.MeshBasicMaterial({
+    color:0x260303,
+    side: THREE.DoubleSide
+});
+var pi4 = new THREE.Mesh(geometrypi4,materialpi4);
+//scene.add(pi4);
+pi4.position.set(2,-5.5,0.5);
+
+//sombrero
+var geometrysom = new THREE.CircleGeometry(5,40);
+var materialsom = new THREE.MeshBasicMaterial({
+    color:0x630202,
+    side: THREE.DoubleSide });
+var som = new THREE.Mesh(geometrysom,materialsom);
+//scene.add(som);
+som.position.set(0,12.5,0);
+som.rotation.x = Math.PI / 2;
+
+
+var geometrysom1 = new THREE.SphereGeometry(3,30,30,0,Math.PI);
+var materialsom1 = new THREE.MeshBasicMaterial({
+    color:0x630202,
+    side: THREE.DoubleSide });
+var som1 = new THREE.Mesh(geometrysom1,materialsom1);
+//scene.add(som1);
+som1.position.set(0,12.5,0);
+som1.rotation.x = Math.PI / -2;
+
+
+//ojos
+var geometryojos = new THREE.CircleGeometry(.5,40);
+var materialojos = new THREE.MeshBasicMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide });
+var ojos = new THREE.Mesh(geometryojos,materialojos);
+//scene.add(ojos);
+ojos.position.set(1,11.6,2.4);
+
+var geometryojos1 = new THREE.CircleGeometry(.5,40);
+var materialojos1 = new THREE.MeshBasicMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide });
+var ojos1 = new THREE.Mesh(geometryojos1,materialojos1);
+//scene.add(ojos1);
+ojos1.position.set(-1,11.6,2.4);
+
+//nariz
+var geometryNariz = new THREE.ConeGeometry(0.4, 0.09, 4);
+var materialnariz= new THREE.MeshBasicMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide });
+var nariz = new THREE.Mesh(geometryNariz, materialnariz);
+nariz.rotation.x = Math.PI / 2;
+nariz.position.set(0,11,2.2);
+//scene.add(nariz);
+
+//boca
+var geometryb1 = new THREE.PlaneGeometry(1.5,.1);
+var materialb1 = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide });
+var b1 = new THREE.Mesh(geometryb1,materialb1);
+//scene.add(b1);
+b1.position.set(0,10,2);
+
+
+var geometryb2 = new THREE.PlaneGeometry(.1,.5);
+var materialb2 = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide });
+var b2 = new THREE.Mesh(geometryb2,materialb2);
+//scene.add(b2);
+b2.position.set(0,10,2);
+
+var geometryb3 = new THREE.PlaneGeometry(.1,.5);
+var materialb3 = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide });
+var b3 = new THREE.Mesh(geometryb3,materialb3);
+//scene.add(b3);
+b3.position.set(.5,10,2);
+
+var geometryb4 = new THREE.PlaneGeometry(.1,.5);
+var materialb4 = new THREE.MeshBasicMaterial({
+    color:0x030303,
+    side: THREE.DoubleSide });
+var b4 = new THREE.Mesh(geometryb4,materialb4);
+//scene.add(b4);
+b4.position.set(-.5,10,2);
+
+//mandibula
+var geometryMandibula = new THREE.BoxGeometry(3,3.5,2);
+var mandibula = new THREE.Mesh(geometryMandibula, materialCranio);
+mandibula.position.set(0,11,.9);
+//scene.add(mandibula);
+
+
+
+
+//ramo
+var flor1 = new THREE.TorusKnotGeometry(4,1,100,16,18,13);
+var mat1 = new THREE.MeshLambertMaterial({color:0xF54927});
+
+var f1 = new THREE.Mesh(flor1,mat1);
+f1.position.set(0,14.5,0);
+f1.rotation.set(Math.PI/2,0,0);
+f1.scale.set(.4, .4, .4);
+//scene.add(f1);
+
+var f2 = new THREE.Mesh(flor1,mat1);
+f2.position.set(3.6,15,1.5);
+f2.rotation.set(Math.PI/2,0,0);
+f2.scale.set(.2, .2, .2);
+//scene.add(f2);
+var f3 = new THREE.Mesh(flor1,mat1);
+f3.position.set(-3.6,15,0);
+f3.rotation.set(Math.PI/2,0,0);
+f3.scale.set(.2, .2, .2);
+//scene.add(f3);
+
+var f4 = new THREE.Mesh(flor1,mat1);
+f4.position.set(-3.,15,2.5);
+f4.rotation.set(Math.PI/2,0,0);
+f4.scale.set(.2, .2, .2);
+//scene.add(f4);
+
+var f5 = new THREE.Mesh(flor1,mat1);
+f5.position.set(-.7,15,3.9);
+f5.rotation.set(Math.PI/2,0,0);
+f5.scale.set(.2, .2, .2);
+//scene.add(f5);
+
+var f6 = new THREE.Mesh(flor1,mat1);
+f6.position.set(2,15,3.5);
+f6.rotation.set(Math.PI/2,0,0);
+f6.scale.set(.2, .2, .2);
+//scene.add(f6);
+
+var f7 = new THREE.Mesh(flor1,mat1);
+f7.position.set(2,15,-3.5);
+f7.rotation.set(Math.PI/2,0,0);
+f7.scale.set(.2, .2, .2);
+//scene.add(f7);
+
+var f8 = new THREE.Mesh(flor1,mat1);
+f8.position.set(-.7,15,-3.9);
+f8.rotation.set(Math.PI/2,0,0);
+f8.scale.set(.2, .2, .2);
+//scene.add(f8);
+var f9 = new THREE.Mesh(flor1,mat1);
+f9.position.set(-3.,15,-2.5);
+f9.rotation.set(Math.PI/2,0,0);
+f9.scale.set(.2, .2, .2);
+//scene.add(f9);
+
+var f10 = new THREE.Mesh(flor1,mat1);
+f10.position.set(3.6,15,-1.5);
+f10.rotation.set(Math.PI/2,0,0);
+f10.scale.set(.2, .2, .2);
+//scene.add(f10);
+
+//naranja
+/*var flor1 = new THREE.TorusKnotGeometry(1,3,100,16,18,13);
+var mat1 = new THREE.MeshLambertMaterial({color:0xF54927});
+
+var f1 = new THREE.Mesh(flor1,mat1);
+f1.position.set(15,6,-10);
+f1.rotation.set(Math.PI/2,0,0);
+scene.add(f1);*/
+
+//papel
+var geometrypa = new THREE.ConeGeometry(5.5,10,20,20);
+var materialpa = new THREE.MeshBasicMaterial({
+    color:0xFEEBE7,
+    side: THREE.DoubleSide });
+var papel = new THREE.Mesh(geometrypa,materialpa);
+//scene.add(papel);
+papel.position.set(0,10,0);
+papel.rotation.z = Math.PI;
+
+
+var CINCO = new THREE.Group();
+CINCO.add(f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,papel);
+CINCO.position.set(0,2,3);
+CINCO.scale.set(.4, .4, .4);
+//scene.add(CINCO);
+
+const catrina =new THREE.Group();
+catrina.add(CINCO,cranio,c,cs,cs1,cs2,cs2,c1,c2,c3,c4,c41,c42,c5,c51,c52,f,p1,p2,p3,pi3,pi4,som,som1,ojos,ojos1,nariz,b1,b2,b3,b3,mandibula);
+catrina.position.set(x,y,z);
+
+return catrina;
+
+
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>Ramo</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js"
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x69142B);
+
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, 4, 25);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+ 
+
+// Espacio para colocar los objetos
+// GridHelper
+/*var gridHelper = new THREE.GridHelper(50,50);
+scene.add(gridHelper);
+
+var axesHelper = new THREE.AxesHelper(50);
+scene.add(axesHelper);*/
+
+var light2 = new THREE.DirectionalLight(0Xffffff,1.5);
+scene.add(light2);
+light2.position.set(0,20,50);
+light2.target.position.set(0,0,0);
+
+light2.castShadow = true;
+light2.shadow.bias = 0.01;
+light2.shadow.mapSize.widht = 1024;
+light2.shadow.mapSize.height = 1024;
+
+light2.shadow.camera.top=55;
+light2.shadow.camera.bottom = -55;
+light2.shadow.camera.left = -50;
+light2.shadow.camera.right=-50;
+light2.shadow.camera.visible = true;
+
+var directionalHelper = new THREE.CameraHelper(light2.shadow.camera);
+scene.add(light2);
+
+
+
+
+///  💫💢🐭🐭 LUCES
+
+
+
+//OBJETOS  ✏️✏️✏️✏️  🪶
+var geometry0 = new THREE.BoxGeometry(100,1,100);
+var material0 = new THREE.MeshLambertMaterial({
+    color:0x180501,
+    side: THREE.DoubleSide, 
+    });
+
+var mesh0 = new THREE.Mesh(geometry0,material0);
+scene.add(mesh0);
+mesh0.position.set(0,0,0);
+mesh0.receiveShadow = true;
+
+
+
+// ramo
+var flor1 = new THREE.TorusKnotGeometry(4,1,100,16,18,13);
+var mat1 = new THREE.MeshLambertMaterial({color:0xF54927});
+
+var f1 = new THREE.Mesh(flor1,mat1);
+f1.position.set(0,14.5,0);
+f1.rotation.set(Math.PI/2,0,0);
+f1.scale.set(.4, .4, .4);
+scene.add(f1);
+
+var f2 = new THREE.Mesh(flor1,mat1);
+f2.position.set(3.6,15,1.5);
+f2.rotation.set(Math.PI/2,0,0);
+f2.scale.set(.2, .2, .2);
+scene.add(f2);
+var f3 = new THREE.Mesh(flor1,mat1);
+f3.position.set(-3.6,15,0);
+f3.rotation.set(Math.PI/2,0,0);
+f3.scale.set(.2, .2, .2);
+scene.add(f3);
+
+var f4 = new THREE.Mesh(flor1,mat1);
+f4.position.set(-3.,15,2.5);
+f4.rotation.set(Math.PI/2,0,0);
+f4.scale.set(.2, .2, .2);
+scene.add(f4);
+
+var f5 = new THREE.Mesh(flor1,mat1);
+f5.position.set(-.7,15,3.9);
+f5.rotation.set(Math.PI/2,0,0);
+f5.scale.set(.2, .2, .2);
+scene.add(f5);
+
+var f6 = new THREE.Mesh(flor1,mat1);
+f6.position.set(2,15,3.5);
+f6.rotation.set(Math.PI/2,0,0);
+f6.scale.set(.2, .2, .2);
+scene.add(f6);
+
+var f7 = new THREE.Mesh(flor1,mat1);
+f7.position.set(2,15,-3.5);
+f7.rotation.set(Math.PI/2,0,0);
+f7.scale.set(.2, .2, .2);
+scene.add(f7);
+
+var f8 = new THREE.Mesh(flor1,mat1);
+f8.position.set(-.7,15,-3.9);
+f8.rotation.set(Math.PI/2,0,0);
+f8.scale.set(.2, .2, .2);
+scene.add(f8);
+var f9 = new THREE.Mesh(flor1,mat1);
+f9.position.set(-3.,15,-2.5);
+f9.rotation.set(Math.PI/2,0,0);
+f9.scale.set(.2, .2, .2);
+scene.add(f9);
+
+var f10 = new THREE.Mesh(flor1,mat1);
+f10.position.set(3.6,15,-1.5);
+f10.rotation.set(Math.PI/2,0,0);
+f10.scale.set(.2, .2, .2);
+scene.add(f10);
+
+//naranja
+/*var flor1 = new THREE.TorusKnotGeometry(1,3,100,16,18,13);
+var mat1 = new THREE.MeshLambertMaterial({color:0xF54927});
+
+var f1 = new THREE.Mesh(flor1,mat1);
+f1.position.set(15,6,-10);
+f1.rotation.set(Math.PI/2,0,0);
+scene.add(f1);*/
+
+//papel
+var geometrypa = new THREE.ConeGeometry(5.5,10,20,20);
+var materialpa = new THREE.MeshBasicMaterial({
+    color:0xFEEBE7,
+    side: THREE.DoubleSide });
+var papel = new THREE.Mesh(geometrypa,materialpa);
+scene.add(papel);
+papel.position.set(0,10,0);
+papel.rotation.z = Math.PI;
+
+
+var CINCO = new THREE.Group();
+CINCO.add(f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,papel);
+CINCO.position.set(0,10,0);
+scene.add(CINCO);
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+    //🪄🪄 Animación - 
+
+
+
+
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

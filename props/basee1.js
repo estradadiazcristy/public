@@ -1,0 +1,255 @@
+import *as THREE from "../js/three.module.js";
+export  default function base({x,y,z}){ 
+
+ 
+    // 1. BASE INFERIOR
+    var geometryBase = new THREE.CylinderGeometry(7, 7, 2.5, 40, 1);
+    var materialBase = new THREE.MeshLambertMaterial({ color: 0xffffff });
+    var meshBase = new THREE.Mesh(geometryBase, materialBase);
+    meshBase.position.set(0, 1.25, 0);
+
+    // 2. NIVEL SUPERIOR
+    var geometrySuperior = new THREE.CylinderGeometry(5.5, 5.5, 2.5, 40, 1);
+    var materialSuperior = new THREE.MeshLambertMaterial({ color: 0xffffff });
+    var meshSuperior = new THREE.Mesh(geometrySuperior, materialSuperior);
+    meshSuperior.position.set(0, 3.75, 0);
+
+    // 3. BORDE DE LA BASE
+    var geometryBorde = new THREE.CylinderGeometry(7.05, 7.05, 0.15, 40, 1);
+    var materialBorde = new THREE.MeshLambertMaterial({ color: 0xe6e6e6 });
+    var meshBorde = new THREE.Mesh(geometryBorde, materialBorde);
+    meshBorde.position.set(0, 2.45, 0);
+
+    // 4. BORDE DEL NIVEL SUPERIOR
+    var geometryBordeSuperior = new THREE.CylinderGeometry(5.55, 5.55, 0.12, 40, 1);
+    var materialBordeSuperior = new THREE.MeshLambertMaterial({ color: 0xe6e6e6 });
+    var meshBordeSuperior = new THREE.Mesh(geometryBordeSuperior, materialBordeSuperior);
+    meshBordeSuperior.position.set(0, 5, 0);
+
+    // --- VELAS (1 al 8) ---
+    // VELA 1 VERDE
+    var geometryV = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialV = new THREE.MeshLambertMaterial({ color: 0x588157, transparent: true, opacity: 0.5 });
+    var meshV = new THREE.Mesh(geometryV, materialV);
+    meshV.position.set(-6.5, 4, 0);
+
+    var tasV = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasV = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasV = new THREE.Mesh(tasV, materialtasV);
+    meshtasV.position.set(-6.5, 4, 0);
+
+    var geometryV1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialV1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshV1 = new THREE.Mesh(geometryV1, materialV1);
+    meshV1.position.set(-6.5, 5.6, 0);
+
+    var geometryV9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialV9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshV9 = new THREE.Mesh(geometryV9, materialV9);
+    meshV9.position.set(-6.5, 5.6, 0);
+
+    // VELA 2 CAFÉ
+    var geometryC = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialC = new THREE.MeshLambertMaterial({ color: 0x99582a, transparent: true, opacity: 0.5 });
+    var meshC = new THREE.Mesh(geometryC, materialC);
+    meshC.position.set(-4.6, 4, 4.6);
+
+    var tasC = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasC = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasC = new THREE.Mesh(tasC, materialtasC);
+    meshtasC.position.set(-4.6, 4, 4.6);
+
+    var geometryC1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialC1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshC1 = new THREE.Mesh(geometryC1, materialC1);
+    meshC1.position.set(-4.6, 5.6, 4.6);
+
+    var geometryC9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialC9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshC9 = new THREE.Mesh(geometryC9, materialC9);
+    meshC9.position.set(-4.6, 5.6, 4.6);
+
+    // VELA 3 MORADA
+    var geometryM = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialM = new THREE.MeshLambertMaterial({ color: 0x7b2cbf, transparent: true, opacity: 0.5 });
+    var meshM = new THREE.Mesh(geometryM, materialM);
+    meshM.position.set(0, 4, 6.5);
+
+    var tasM = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasM = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasM = new THREE.Mesh(tasM, materialtasM);
+    meshtasM.position.set(0, 4, 6.5);
+
+    var geometryM1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialM1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshM1 = new THREE.Mesh(geometryM1, materialM1);
+    meshM1.position.set(0, 5.6, 6.5);
+
+    var geometryM9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialM9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshM9 = new THREE.Mesh(geometryM9, materialM9);
+    meshM9.position.set(0, 5.6, 6.5);
+
+    // VELA 4 ROJA
+    var geometryR = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialR = new THREE.MeshLambertMaterial({ color: 0xf25c54, transparent: true, opacity: 0.5 });
+    var meshR = new THREE.Mesh(geometryR, materialR);
+    meshR.position.set(4.6, 4, 4.6);
+
+    var tasR = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasR = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasR = new THREE.Mesh(tasR, materialtasR);
+    meshtasR.position.set(4.6, 4, 4.6);
+
+    var geometryR1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialR1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshR1 = new THREE.Mesh(geometryR1, materialR1);
+    meshR1.position.set(4.6, 5.6, 4.6);
+
+    var geometryR9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialR9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshR9 = new THREE.Mesh(geometryR9, materialR9);
+    meshR9.position.set(4.6, 5.6, 4.6);
+
+    // VELA 5 CREMITA
+    var geometryCA = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialCA = new THREE.MeshLambertMaterial({ color: 0xf4d58d, transparent: true, opacity: 0.5 });
+    var meshCA = new THREE.Mesh(geometryCA, materialCA);
+    meshCA.position.set(6.5, 4, 0);
+
+    var tasCA = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasCA = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasCA = new THREE.Mesh(tasCA, materialtasCA);
+    meshtasCA.position.set(6.5, 4, 0);
+
+    var geometryCA1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialCA1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshCA1 = new THREE.Mesh(geometryCA1, materialCA1);
+    meshCA1.position.set(6.5, 5.6, 0);
+
+    var geometryCA9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialCA9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshCA9 = new THREE.Mesh(geometryCA9, materialCA9);
+    meshCA9.position.set(6.5, 5.6, 0);
+
+    // VELA 6 MENTA (Nota: corregido materialT y meshT que usaban referencias cruzadas)
+    var geometryT = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialT = new THREE.MeshLambertMaterial({ color: 0x55d6c2, transparent: true, opacity: 0.5 });
+    var meshT = new THREE.Mesh(geometryT, materialT);
+    meshT.position.set(4.6, 4, -4.6);
+
+    var tasT = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasT = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasT = new THREE.Mesh(tasT, materialtasT);
+    meshtasT.position.set(4.6, 4, -4.6);
+
+    var geometryT1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialT1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshT1 = new THREE.Mesh(geometryT1, materialT1);
+    meshT1.position.set(4.6, 5.6, -4.6);
+
+    var geometryT9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialT9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshT9 = new THREE.Mesh(geometryT9, materialT9);
+    meshT9.position.set(4.6, 5.6, -4.6);
+
+    // VELA 7 AMARILLA
+    var geometryA = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialA = new THREE.MeshLambertMaterial({ color: 0xffd639, transparent: true, opacity: 0.5 });
+    var meshA = new THREE.Mesh(geometryA, materialA);
+    meshA.position.set(0, 4, -6.5);
+
+    var tasA = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasA = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasA = new THREE.Mesh(tasA, materialtasA);
+    meshtasA.position.set(0, 4, -6.5);
+
+    var geometryA1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialA1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshA1 = new THREE.Mesh(geometryA1, materialA1);
+    meshA1.position.set(0, 5.6, -6.5);
+
+    var geometryA9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialA9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshA9 = new THREE.Mesh(geometryA9, materialA9);
+    meshA9.position.set(0, 5.6, -6.5);
+
+    // VELA 8 AZUL
+    var geometryL = new THREE.CylinderGeometry(0.45, 0.45, 2.5, 16, 10);
+    var materialL = new THREE.MeshLambertMaterial({ color: 0x2667ff, transparent: true, opacity: 0.5 });
+    var meshL = new THREE.Mesh(geometryL, materialL);
+    meshL.position.set(-4.6, 4, -4.6);
+
+    var tasL = new THREE.CylinderGeometry(0.35, 0.35, 2.2, 16, 10, false);
+    var materialtasL = new THREE.MeshLambertMaterial({ color: 0xfdf0d5, side: THREE.DoubleSide });
+    var meshtasL = new THREE.Mesh(tasL, materialtasL);
+    meshtasL.position.set(-4.6, 4, -4.6);
+
+    var geometryL1 = new THREE.SphereGeometry(0.35, 12, 10);
+    var materialL1 = new THREE.MeshLambertMaterial({ color: 0xff6d00, transparent: true, opacity: 0.5 });
+    var meshL1 = new THREE.Mesh(geometryL1, materialL1);
+    meshL1.position.set(-4.6, 5.6, -4.6);
+
+    var geometryL9 = new THREE.SphereGeometry(0.22, 12, 10);
+    var materialL9 = new THREE.MeshLambertMaterial({ color: 0xd00000, side: THREE.DoubleSide });
+    var meshL9 = new THREE.Mesh(geometryL9, materialL9);
+    meshL9.position.set(-4.6, 5.6, -4.6);
+
+    // --- FLORES (1 al 8) ---
+    var florGeo = new THREE.TorusKnotGeometry(0.5, 0.3, 100, 16, 18, 13);
+    
+    var matRoja = new THREE.MeshLambertMaterial({ color: 0x640d14, metalness: 0.5, roughness: 0.3 });
+    var matNaranja = new THREE.MeshLambertMaterial({ color: 0xfb5607, metalness: 0.5, roughness: 0.3 });
+
+    var meshF1 = new THREE.Mesh(florGeo, matRoja);
+    meshF1.position.set(-5.5, 4, 2.5);
+    meshF1.rotation.set(0, 5, 0);
+
+    var meshF2 = new THREE.Mesh(florGeo, matNaranja);
+    meshF2.position.set(-2.5, 4, 5.3);
+    meshF2.rotation.set(0, 5, 0);
+
+    var meshF3 = new THREE.Mesh(florGeo, matRoja);
+    meshF3.position.set(2.5, 4, 5.3);
+    meshF3.rotation.set(Math.PI / 22, 0, 0);
+
+    var meshF4 = new THREE.Mesh(florGeo, matNaranja);
+    meshF4.position.set(5.5, 4, 2.5);
+    meshF4.rotation.set(4, 5, 4);
+
+    var meshF5 = new THREE.Mesh(florGeo, matRoja);
+    meshF5.position.set(5.5, 4, -2.5);
+    meshF5.rotation.set(8, 5, 4);
+
+    var meshF6 = new THREE.Mesh(florGeo, matNaranja);
+    meshF6.position.set(2.5, 4, -5.3);
+    meshF6.rotation.set(Math.PI / 8, 5, 4);
+
+    var meshF7 = new THREE.Mesh(florGeo, matRoja);
+    meshF7.position.set(-2.5, 4, -5.3);
+    meshF7.rotation.set(-2, 5, -4);
+
+    var meshF8 = new THREE.Mesh(florGeo, matNaranja);
+    meshF8.position.set(-5.5, 4, -2.5);
+    meshF8.rotation.set(Math.PI / 8, 5, 4);
+
+    // --- CREAR Y LLENAR EL GRUPO ---
+    const base1 = new THREE.Group();
+    base1.add(
+        meshBase, meshSuperior, meshBorde, meshBordeSuperior,
+        meshV, meshtasV, meshV1, meshV9,
+        meshC, meshtasC, meshC1, meshC9,
+        meshM, meshtasM, meshM1, meshM9,
+        meshR, meshtasR, meshR1, meshR9,
+        meshCA, meshtasCA, meshCA1, meshCA9,
+        meshT, meshtasT, meshT1, meshT9,
+        meshA, meshtasA, meshA1, meshA9,
+        meshL, meshtasL, meshL1, meshL9,
+        meshF1, meshF2, meshF3, meshF4, meshF5, meshF6, meshF7, meshF8
+    );
+
+    // Asignar la posición solicitada
+    base1.position.set(x, y, z);
+    
+    return base1;
+}

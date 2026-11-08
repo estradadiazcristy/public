@@ -1,0 +1,198 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>Práctica 08</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js"
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x87AD3);
+
+//GridHelper👽👽
+//var gridHelper = new THREE.GridHelper (50,50);
+//scene.add(gridHelper);
+
+//var axesHelper = new THREE.AxesHelper(50);
+//scene.add(axesHelper);
+
+
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+//GridHelper👽👽
+var gridHelper = new THREE.GridHelper (50,50);
+//scene.add(gridHelper);
+
+var axesHelper = new THREE.AxesHelper(50);
+//scene.add(axesHelper);
+    //Settings de la cámara
+    camera.position.set(80, 40, 0);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+
+
+
+
+// Espacio para colocar los objetos
+
+//SOMBRAA
+renderer.shadowMap.enabled  = true;
+renderer.shadowMap.type = THREE.PCFShadowMap;
+ 
+var light2 = new THREE.DirectionalLight(0xF5F5DC,2);
+//scene.add(light2);
+light2.position.set(150,100,0)
+ 
+light2.castShadow = true;
+light2.shadow.bias = 0.01;
+light2.shadow.mapSize.width = 1024;
+light2.shadow.mapSize.height = 1024;
+light2.shadow.camera.top = 55;
+light2.shadow.camera.bottom = -55;
+light2.shadow.camera.left = -70;
+light2.shadow.camera.right = 70;
+light2.shadow.camera.visible = true;
+ 
+var directionalHelper = new THREE.CameraHelper (light2.shadow.camera);
+
+//scene.add(directionalHelper);
+ 
+//scene.add(light2);
+
+///  💫💢🐭🐭 LUCES
+
+
+//var light3 = new THREE.HemisphereLight(0x0000FF,0xA6FFFB,0.5);
+//scene.add(light3);
+
+var punto = new THREE.PointLight(0x7FFF00, 5, 50, 2);
+punto.position.set(25, 30, 25);
+scene.add(punto);
+var h = new THREE.PointLightHelper(punto, 2);
+scene.add(h);
+punto.castShadow = true;
+
+
+
+//OBJETOS  ✏️✏️✏️✏️  🪶
+// POSTE VERTICAL
+var geometry01f = new THREE.BoxGeometry(0.5, 3, 0.5);
+var material01f = new THREE.MeshLambertMaterial({color: 0x495057});
+var mesh01f = new THREE.Mesh(geometry01f, material01f);
+mesh01f.position.set(0, 1.5, 0);
+scene.add(mesh01f);
+mesh01f.castShadow = true;
+
+
+// BASE DEL POSTE
+var geometry02f = new THREE.BoxGeometry(0.7, 0.5, 0.7);
+var material02f = new THREE.MeshLambertMaterial({color: 0x343A40});
+var mesh02f = new THREE.Mesh(geometry02f, material02f);
+mesh02f.position.set(0, 0.25, 0);
+scene.add(mesh02f);
+mesh02f.castShadow = true;
+
+// BRAZO CURVO SUPERIOR
+var geometry03f = new THREE.TorusGeometry(0.9, 0.12, 12, 32, Math.PI);
+var material03f = new THREE.MeshLambertMaterial({color: 0x495057});
+var mesh03f = new THREE.Mesh(geometry03f, material03f);
+mesh03f.position.set(0.9, 3, 0);
+mesh03f.rotation.set(0, 0, Math.PI/8);
+scene.add(mesh03f);
+mesh03f.castShadow = true;
+
+//  BRAZO  DEL POSTE
+var geometry04f = new THREE.CylinderGeometry(0.12, 0.12, 0.5, 12);
+var material04f = new THREE.MeshLambertMaterial({color: 0x495057});
+var mesh04f = new THREE.Mesh(geometry04f, material04f);
+mesh04f.position.set(0.85, 3.8, 0);
+scene.add(mesh04f);
+mesh04f.castShadow = true;
+
+// medio circulo gris fuerte superior de la luz
+var geometry05f = new THREE.SphereGeometry(0.6, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2);
+var material05f = new THREE.MeshLambertMaterial({color: 0x343a40});
+var mesh05f = new THREE.Mesh(geometry05f, material05f);
+mesh05f.position.set(1.6, 3.5, 0);
+mesh05f.rotation.x = 0;
+scene.add(mesh05f);
+mesh05f.castShadow = true;
+
+// FOCO AMARILLO
+var geometry06f = new THREE.SphereGeometry(0.30, 16, 12);
+var material06f = new THREE.MeshLambertMaterial({color: 0Xfcbf49});
+var mesh06f = new THREE.Mesh(geometry06f, material06f);
+mesh06f.position.set(1.6, 3.5, 0);
+scene.add(mesh06f);
+mesh06f.castShadow = true;
+
+//plano
+var geometry01 = new THREE.PlaneGeometry(200,200);
+var material01 = new THREE.MeshLambertMaterial({
+color:0xffafcc,
+side: THREE.DoubleSide
+});
+
+var mesh01 = new THREE.Mesh(geometry01,material01);
+scene.add(mesh01);
+mesh01.position.set(2,0,2);
+mesh01.rotation.set(-Math.PI/2,0,0);
+mesh01.receiveShadow = true;
+
+
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+    //🪄🪄 Animación 
+
+
+
+
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

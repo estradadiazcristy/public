@@ -1,0 +1,86 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>concha</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x70707C);
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, 4, 10);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+
+// Espacio para colocar los objetos
+    
+var concha1 = new THREE.SphereGeometry(1.5, 32, 32);
+var materialcon = new THREE.MeshBasicMaterial({ color: 0xd7ccc8 });
+var meshconcha = new THREE.Mesh(concha1, materialcon);
+meshconcha.scale.set(1.3, 0.6, 1.3);
+
+var azucar1 = new THREE.SphereGeometry(1.52, 32, 32, 0, Math.PI * 2, 0, Math.PI / 1.8);
+var materialazu = new THREE.MeshBasicMaterial({ color: 0x4e342e });
+var meshazucar = new THREE.Mesh(azucar1, materialazu);
+meshconcha.add(meshazucar);
+
+
+
+scene.add(meshconcha);
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+
+    //🪄🪄 Animación - 
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

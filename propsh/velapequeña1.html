@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Práctica 08</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas"></canvas>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "./js/three.module.js",
+        "three/OrbitControls": "./js/OrbitControls.js"
+    }
+}
+</script>
+
+<script type="module">
+
+import * as THREE from 'three';
+import { OrbitControls } from 'three/OrbitControls';
+import { RoundedBoxGeometry } from "./js/RoundedBoxGeometry.js";
+
+// RENDERER
+var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'),
+    antialias: true
+});
+
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x87AD3D);
+
+// ESCENA
+var scene = new THREE.Scene();
+
+// CÁMARA
+var camera = new THREE.PerspectiveCamera(
+    70,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    2000
+);
+
+scene.add(camera);
+camera.position.set(80, 40, 0);
+
+// CONTROLES
+var controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+// SOMBRAS
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFShadowMap;
+
+var light2 = new THREE.DirectionalLight(0xF5F5DC, 2);
+light2.position.set(150, 100, 0);
+light2.castShadow = true;
+light2.shadow.bias = 0.01;
+light2.shadow.mapSize.width = 1024;
+light2.shadow.mapSize.height = 1024;
+
+// scene.add(light2);
+
+// LUZ AMBIENTE
+var luzAmbiente = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(luzAmbiente);
+
+// LUZ CÁLIDA DE LA VELA
+var luzVela091 = new THREE.PointLight(0xFFAA33, 8, 50);
+luzVela091.position.set(26, 10, -24);
+luzVela091.castShadow = true;
+scene.add(luzVela091);
+
+// AYUDA PARA VISUALIZAR LA POSICIÓN DE LA LUZ
+var helperVela = new THREE.PointLightHelper(luzVela091, 1);
+scene.add(helperVela);
+
+// LUZ VERDE
+var puntoluz = new THREE.SpotLight(0x7FFF00, 50, 50, 0.38, 0.5, 2);
+puntoluz.position.set(26, 30, -24);
+puntoluz.target.position.set(25, 0, 25);
+
+scene.add(puntoluz);
+scene.add(puntoluz.target);
+
+puntoluz.castShadow = true;
+
+var helper1 = new THREE.SpotLightHelper(puntoluz);
+scene.add(helper1);
+
+// VASO EXTERIOR
+var geometry133 = new THREE.CylinderGeometry(4, 4, 9, 10, 10);
+var material133 = new THREE.MeshLambertMaterial({
+    color: 0xffff00,
+    transparent: true,
+    opacity: 0.5
+});
+
+var mesh133 = new THREE.Mesh(geometry133, material133);
+mesh133.position.set(26, 4, -24);
+mesh133.receiveShadow = true;
+scene.add(mesh133);
+
+// VASO INTERIOR
+var tas = new THREE.CylinderGeometry(3.5, 3, 8, 10, 10, false);
+
+var materialtas = new THREE.MeshLambertMaterial({
+    color: 0xfdf0d5,
+    side: THREE.DoubleSide
+});
+
+var meshtas = new THREE.Mesh(tas, materialtas);
+meshtas.position.set(26, 4, -24);
+meshtas.receiveShadow = true;
+scene.add(meshtas);
+
+// LLAMA
+var geometry91 = new THREE.SphereGeometry(1.5, 16, 16);
+
+var material91 = new THREE.MeshBasicMaterial({
+    color: 0xff6d00
+});
+
+var mesh91 = new THREE.Mesh(geometry91, material91);
+mesh91.position.set(26, 9, -24);
+scene.add(mesh91);
+
+ //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    
+
+</script>
+</body>
+</html>

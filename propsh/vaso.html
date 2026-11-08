@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>vaso</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x70707C);
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, 4, 10);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+
+// Espacio para colocar los objetos
+    
+      var vaso01 = new THREE.CylinderGeometry(4, 3,10, 20, 10, true);
+        var materialv = new THREE.MeshBasicMaterial({ color: 0xffffff,transparent:true,opacity:0.3 });
+        var meshv = new THREE.Mesh(vaso01, materialv);
+        meshv.position.set(0, 0, 0);
+        scene.add(meshv);
+
+
+        var vasof = new THREE.CircleGeometry(3, 20);
+         var materialf = new THREE.MeshBasicMaterial({ color: 0xffffff,transparent:true,opacity:0.3});
+        var meshf = new THREE.Mesh(vasof, materialf);
+        meshf.position.set(0, -5, 0);
+        meshf.rotation.x = Math.PI / 2;
+        meshv.add(meshf);
+
+        var vasoa = new THREE.CylinderGeometry(3.5, 3,8, 20, 10, false);
+        var materiala = new THREE.MeshBasicMaterial({ color: 0x64b5f6, side: THREE.DoubleSide });
+        var meshva = new THREE.Mesh(vasoa, materiala);
+        meshva.position.set(0, 0, 0);
+        scene.add(meshva);
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+
+    //🪄🪄 Animación - 
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>
